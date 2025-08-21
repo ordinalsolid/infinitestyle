@@ -23,11 +23,11 @@
       100% { background-position: 0% 50%; }
     }
 	  
-@keyframes rainbowGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    @keyframes rainbowGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 	  
     h1 {
       font-size: 120px;
@@ -42,24 +42,36 @@
       margin: 20px 0 0;
     }
 
+    /* ---- FIXED HEIGHT CONTAINER FOR SPINNING WORDS ---- */
     #slots {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
       max-width: 1000px;
-      margin: 0 auto 20px;
-      text-align: center;
-      font-size: 90px;
+      margin: 0 auto 40px; /* push GO + history lower */
     }
 
-    #slots div {
-      min-width: 200px;
+    #slots .column {
+      position: relative;
+      width: 250px;   /* fixed column width */
+      height: 120px;  /* locks the height so layout doesn’t bounce */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+    }
+
+    #slots .column span {
+      position: absolute; /* prevents text from pushing layout */
+      text-align: center;
+      line-height: 1;
     }
 
     #history {
-      max-width: 1000px;
-      margin: 0 auto;
+      max-width: 1200px;
+      margin: 20px auto 0;
       text-align: left;
-      font-size: 60px;
+      font-size: 50px;
       line-height: 1.1;
     }
 
@@ -77,52 +89,53 @@
     }
 
     #go {
-  display: block;
-  margin: 5px auto 20px;
-  font-size: 90px;
-  text-transform: uppercase;
-  background: linear-gradient(
-    270deg,
-    red, orange, yellow, green, cyan, blue, violet, red
-  );
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  border: none;
-  cursor: pointer;
-  font-family: 'Roboto Condensed', sans-serif;
-  animation: floaty 0.6s infinite, rainbowGradient 6s infinite linear;
-}
+      display: block;
+      margin: 10px auto 30px;
+      font-size: 90px;
+      text-transform: uppercase;
+      background: linear-gradient(
+        270deg,
+        red, orange, yellow, green, cyan, blue, violet, red
+      );
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: 'Roboto Condensed', sans-serif;
+      animation: floaty 0.6s infinite, rainbowGradient 6s infinite linear;
+    }
 
     @keyframes floaty {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  10% { transform: translate(-2px, 2px) rotate(-2deg); }
-  20% { transform: translate(2px, -2px) rotate(2deg); }
-  30% { transform: translate(-3px, 1px) rotate(-1deg); }
-  40% { transform: translate(3px, -1px) rotate(1deg); }
-  50% { transform: translate(-2px, 2px) rotate(-2deg); }
-  60% { transform: translate(2px, -2px) rotate(2deg); }
-  70% { transform: translate(-1px, 1px) rotate(-1deg); }
-  80% { transform: translate(1px, -1px) rotate(1deg); }
-  90% { transform: translate(-2px, 2px) rotate(1deg); }
-}
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      10% { transform: translate(-2px, 2px) rotate(-2deg); }
+      20% { transform: translate(2px, -2px) rotate(2deg); }
+      30% { transform: translate(-3px, 1px) rotate(-1deg); }
+      40% { transform: translate(3px, -1px) rotate(1deg); }
+      50% { transform: translate(-2px, 2px) rotate(-2deg); }
+      60% { transform: translate(2px, -2px) rotate(2deg); }
+      70% { transform: translate(-1px, 1px) rotate(-1deg); }
+      80% { transform: translate(1px, -1px) rotate(1deg); }
+      90% { transform: translate(-2px, 2px) rotate(1deg); }
+    }
 	  
-	  @keyframes shakeHarder {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  10% { transform: translate(-4px, 4px) rotate(-4deg); }
-  20% { transform: translate(4px, -4px) rotate(4deg); }
-  30% { transform: translate(-5px, 2px) rotate(-3deg); }
-  40% { transform: translate(5px, -2px) rotate(3deg); }
-  50% { transform: translate(-4px, 4px) rotate(-4deg); }
-  60% { transform: translate(4px, -4px) rotate(4deg); }
-  70% { transform: translate(-3px, 3px) rotate(-3deg); }
-  80% { transform: translate(3px, -3px) rotate(3deg); }
-  90% { transform: translate(-5px, 2px) rotate(-2deg); }
-}
+    @keyframes shakeHarder {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      10% { transform: translate(-4px, 4px) rotate(-4deg); }
+      20% { transform: translate(4px, -4px) rotate(4deg); }
+      30% { transform: translate(-5px, 2px) rotate(-3deg); }
+      40% { transform: translate(5px, -2px) rotate(3deg); }
+      50% { transform: translate(-4px, 4px) rotate(-4deg); }
+      60% { transform: translate(4px, -4px) rotate(4deg); }
+      70% { transform: translate(-3px, 3px) rotate(-3deg); }
+      80% { transform: translate(3px, -3px) rotate(3deg); }
+      90% { transform: translate(-5px, 2px) rotate(-2deg); }
+    }
 
     footer {
+	max-width: 1200px;
       text-align: center;
       margin: 40px auto;
       font-size: 20px;
@@ -136,14 +149,13 @@
         margin-top: 10px;
       }
       #slots {
-        display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 60px;
-        gap: 10px;
       }
-      #slots div {
-        min-width: auto;
+      #slots .column {
+        width: auto;
+        height: 80px; /* smaller fixed height for mobile */
+        font-size: 50px;
       }
       #history {
         font-size: 30px;
@@ -160,12 +172,14 @@
 <body>
   <h1>STYLE LAB</h1>
   <div id="slots">
-    <div id="col1">MAKE</div>
-    <div id="col2">NEW</div>
-    <div id="col3">STYLE</div>
-</div>
+    <div class="column"><span id="col1">RESEARCH</span></div>
+    <div class="column"><span id="col2">DECONSTRUCT</span></div>
+    <div class="column"><span id="col3">REMIX</span></div>
+  </div>
+
 <button id="go">GO</button>
-  <div id="history">
+
+<div id="history">
     <div class="set"><span class="set-number">1.</span><span id="h1"></span></div>
     <div class="set"><span class="set-number">2.</span><span id="h2"></span></div>
     <div class="set"><span class="set-number">3.</span><span id="h3"></span></div>
@@ -173,14 +187,14 @@
     <div class="set"><span class="set-number">5.</span><span id="h5"></span></div>
     <div class="set"><span class="set-number">6.</span><span id="h6"></span></div>
   </div>
-<footer>
-    STYLE LAB is a laboratory for aesthetic experimentation and a tool for generating visual prompts based on movements and trends in art, design, and culture.
-</footer>
+
+  <footer>
+  STYLE LAB is a laboratory for aesthetic experimentation and a tool for generating combinations of movements and trends in art, design, and culture. Both <a href="https://cari.institute/">CARI</a> and <a href="https://aesthetics.fandom.com/wiki/Aesthetics_Wiki">AESTHETICS WIKI</a> were critical resources in the making of STYLE LAB.&nbsp; </footer>
 
   <script>
-    const column1 = ["SUPER", "NEO", "HYPER", "CRYPTO", "SHADOW", "LUNAR", "NEW", "POST", "PLASTIC",  "BIO", "META", "ULTRA", "NANO", "MYSTIC", "GLITCH", "COSMIC", "PROTO"];
-    const column2 = ["GOTHIC", "FUTURE", "TRASH", "BAROQUE", "SOFT", "HARD", "NOISE", "VIRTUAL", "ANALOG", "BUBBLE", "SYNTH", "FOLK", "PLUSH", "WIRED", "ACID"];
-    const column3 = ["CORE", "STYLE", "AESTHETIC", "PUNK", "GAZE", "WAVE", "VIBE", "BOOGIE", "SCAPE", "TECH", "TONE", "VISION", "SHIFT", "REALM", "PULSE", "MOOD", "NOIR", "TYPE", "MOVEMENT", "TREND"];
+    const column1 = ["8-BIT", "ACID DESIGN", "ACIDGRAFIX", "AIRBRUSH SURREALISM", "AMERICANA", "ANIME", "ART DECO", "ART NOUVEAU", "BAROQUE", "BOHEMIAN", "BRUTALISM", "BUREAUCRATIC", "CARICATURE", "CASSETTE FUTURISM", "COASTAL GRANDMOTHER", "CONSTRUCTIVISM", "CORPORATE", "CORPORATE HIPPIE", "COTTAGE CORE", "CRAFTCORE", "CYBER PUNK", "CYBERBOUGIE", "DADA", "DARK ACADEMIA", "DEFAULT", "DE STIJL", "DOLLAR STORE VERNACULAR", "DUNGEON SYNTH", "EARLY 80S EAST COAST HIP HOP", "EMO", "FRASURBANE", "FRUTIGER AERO", "FUTURISM", "GENERATIVE", "GLAM"];
+    const column2 = ["GLITCH", "GLOBAL VILLAGE COFFEEHOUSE", "GOBLIN CORE", "GOOGIE", "GOTH", "GRANOLA GUY", "GRUNGE", "HARAJUKU", "HEAVY METAL", "HIPSTER", "HORROR", "HYPER REALISM", "INDIE SLEAZE", "INDIECRAFT", "INTERNET AWESOMESAUCE", "ITALIAN BRAINROT", "JAPANDI", "KAWAII", "KITSCH", "LO-FI", "LO-TECH", "MAXIMALISM", "MCBLING", "MEMPHIS", "MIDCENTURY MODERN", "MINIMALISM", "NAIVE", "NEO-VECTORHEART", "NEOCLASSICAL", "NERD CORE", "NEON OOZE", "NEW AGE", "NEW WAVE (INCLUDING PACIFIC)", "NORMCORE", "NORWEGIAN BLACK METAL"];
+    const column3 = ["OP ART", "ORGANIC MODERNISM", "POP", "PREHISTORIC", "PREPPY", "PSYCHEDELIA", "PULP FANTASY", "PUNK", "QUAKER", "ROCOCO", "ROMANESQUE", "SANTA FE STYLE", "SCI-FI", "SHITPIC", "SKUEMORPHISM", "SOFT COLONIAL WANDERLUST", "SPORTSBRUT", "STEAMPUNK", "SUPERFLAT", "SURFER", "SURREALIST", "SWISS", "SYNTHWAVE", "TEDDY", "TROPICAL", "UTOPIAN SCHOLASTIC", "VALLEY GIRL", "VAPORWAVE", "VAUDEVILLE", "VECTOR MINIMALISM", "VICTORIAN", "WEB 1.0", "WESTERN", "WIGGLE", "Y2K"];
 
     const colors = generateRainbowColors(48);
 
@@ -190,15 +204,15 @@
       return array[Math.floor(Math.random() * array.length)];
     }
 
-	  // Generate an array of rainbow hues
-function generateRainbowColors(count = 48, saturation = 100, lightness = 50) {
-  const colors = [];
-  for (let i = 0; i < count; i++) {
-    const hue = Math.round((360 / count) * i); // spread evenly around the color wheel
-    colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
-  }
-  return colors;
-}
+    // Generate an array of rainbow hues
+    function generateRainbowColors(count = 48, saturation = 100, lightness = 50) {
+      const colors = [];
+      for (let i = 0; i < count; i++) {
+        const hue = Math.round((360 / count) * i); // spread evenly around the color wheel
+        colors.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
+      }
+      return colors;
+    }
 	  
     function randomColor() {
       return colors[Math.floor(Math.random() * colors.length)];
@@ -250,4 +264,5 @@ function generateRainbowColors(count = 48, saturation = 100, lightness = 50) {
   </script>
 </body>
 </html>
+
 

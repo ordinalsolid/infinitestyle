@@ -58,7 +58,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 50px;
+      font-size: 45px;
     }
 
     #slots .column span {
@@ -71,7 +71,7 @@
       max-width: 1200px;
       margin: 20px auto 0;
       text-align: left;
-      font-size: 50px;
+      font-size: 45px;
       line-height: 1.1;
     }
 
@@ -186,7 +186,7 @@
   </div>
 
   <footer>
-  STYLE LAB is an <i>Image As Communication</i> laboratory for aesthetic experimentation and a tool for generating combinations of movements and trends in art, design, and culture. Both <a href="https://cari.institute/">CARI</a> and <a href="https://aesthetics.fandom.com/wiki/Aesthetics_Wiki">AESTHETICS WIKI</a> were critical resources in the making of STYLE LAB.&nbsp; </footer>
+  STYLE LAB is an <i>Image As Communication</i> laboratory for aesthetic experimentation and a tool for generating combinations of movements and trends in art, design, fashion, and culture. Both <a href="https://cari.institute/">CARI</a> and <a href="https://aesthetics.fandom.com/wiki/Aesthetics_Wiki">AESTHETICS WIKI</a> were critical resources in the making of STYLE LAB.&nbsp; </footer>
 
   <script>
     const column1 = ["8-BIT", "ACID DESIGN", "ACIDGRAFIX", "AIRBRUSH SURREALISM", "AI SLOP", "AMERICANA", "ANIME", "ART DECO", "ART NOUVEAU", "BAROQUE", "BOHEMIAN","BRAINROT","BRUTALISM", "BUREAUCRATIC", "CARICATURE", "CASSETTE FUTURISM", "COASTAL GRANDMOTHER", "CONSTRUCTIVISM", "CORPORATE", "CORPORATE HIPPIE", "COTTAGE CORE", "COUNTRY KITSCH","CRAFTCORE", "CYBER PUNK", "CYBERBOUGIE", "DADA", "DARK ACADEMIA", "DECORA", "DEFAULT", "DE STIJL", "DOLLAR STORE VERNACULAR", "DUNGEON SYNTH", "EARLY 80S EAST COAST HIP HOP", "EMO", "FRASURBANE", "FRUTIGER AERO", "FUTURISM", "GENERATIVE", "GLAM"];
@@ -215,7 +215,7 @@
       return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    function spinColumn(col, words, delay, callback) {
+     function spinColumn(col, words, delay, callback) {
       let interval = setInterval(() => {
         col.textContent = randomWord(words);
       }, 80);
@@ -235,21 +235,28 @@
       spinColumn(col1, column1, 1500, () => {
         spinColumn(col2, column2, 2500, () => {
           spinColumn(col3, column3, 3500, () => {
-            // after all three finish, wait 1 second before adding to history
             setTimeout(() => {
               const phrase = `${col1.textContent} ${col2.textContent} ${col3.textContent}`;
-              if (historyIndex < 6) {
-                document.getElementById("h" + (historyIndex + 1)).textContent = phrase;
-                document.getElementById("h" + (historyIndex + 1)).style.color = color;
-                historyIndex++;
-              } else {
-                for (let i = 1; i < 6; i++) {
-                  document.getElementById("h" + i).textContent = document.getElementById("h" + (i + 1)).textContent;
-                  document.getElementById("h" + i).style.color = document.getElementById("h" + (i + 1)).style.color;
-                }
-                document.getElementById("h6").textContent = phrase;
-                document.getElementById("h6").style.color = color;
-              }
+
+              // shift #1 → #2, #2 → #3
+              const h1 = document.getElementById("h1");
+              const h2 = document.getElementById("h2");
+              const h3 = document.getElementById("h3");
+
+              h3.textContent = h2.textContent;
+              h3.style.color = h2.style.color;
+              if (h2.textContent) h3.classList.add("filled");
+
+              h2.textContent = h1.textContent;
+              h2.style.color = h1.style.color;
+              if (h1.textContent) h2.classList.add("filled");
+
+              // insert newest at #1
+              h1.textContent = phrase;
+              h1.style.color = color;
+              h1.classList.add("filled");
+
+              // recolor live slots
               col1.style.color = color;
               col2.style.color = color;
               col3.style.color = color;
@@ -261,5 +268,3 @@
   </script>
 </body>
 </html>
-
-
